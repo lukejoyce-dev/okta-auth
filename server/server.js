@@ -18,7 +18,6 @@ app.post("/api/token", async (req, res) => {
     req.body;
   const url = `${baseUrl}/oauth2/v1/token`;
   const auth = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
-  console.log("Auth", auth);
   const headers = {
     "Content-Type": "application/x-www-form-urlencoded",
     Accept: "application/json",
@@ -29,8 +28,6 @@ app.post("/api/token", async (req, res) => {
   if (codeVerifier) {
     body = `${body}&code_verifier=${codeVerifier}`;
   }
-  console.log("Request body:", body);
-
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -38,14 +35,13 @@ app.post("/api/token", async (req, res) => {
       body: body,
     });
 
-    console.log("Response status:", response.status);
     if (!response.ok) {
       const errorText = await response.text();
       console.log("Error response text:", errorText);
       throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
     }
-
     const data = await response.json();
+    console.log("Response status:", response.status);
     console.log("Response data:", data);
     res.json(data);
   } catch (error) {
