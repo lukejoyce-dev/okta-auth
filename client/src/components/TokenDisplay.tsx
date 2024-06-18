@@ -9,8 +9,8 @@ const { Panel } = Collapse;
 interface TokenDisplayProps {
   steps: StepsList;
   tokenResponse: TokenResponse;
-  idToken: string;
-  accessToken: string;
+  idToken: string | null;
+  accessToken: string | null;
   displayDecodedTokens: boolean;
   setDisplayDecodedTokens: (value: boolean) => void;
   clear: () => void;

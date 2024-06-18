@@ -71,7 +71,11 @@ function App() {
     }
 
     if (code) {
-      setSteps((prevSteps) => ({ ...prevSteps, 1: "finish", 2: "process" }));
+      setSteps((prevSteps) => ({
+        ...prevSteps,
+        1: AuthSteps.FINISH,
+        2: AuthSteps.PROCESS,
+      }));
     }
   }, [code, implicitAccessToken]);
 
@@ -138,7 +142,7 @@ function App() {
 
       <Steps
         direction="vertical"
-        current={Object.values(steps).indexOf("process") + 1}
+        current={Object.values(steps).indexOf(AuthSteps.PROCESS) + 1}
         items={[
           {
             title: "Step 1",

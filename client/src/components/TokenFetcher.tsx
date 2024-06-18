@@ -55,7 +55,9 @@ const TokenFetcher: React.FC<TokenFetcherProps> = ({
     const formBody = Object.keys(payload)
       .map(
         (key) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(payload[key])}`
+          `${encodeURIComponent(key)}=${encodeURIComponent(
+            payload[key as keyof AuthorisePayload] ?? ""
+          )}`
       )
       .join("&");
 
@@ -126,7 +128,7 @@ const TokenFetcher: React.FC<TokenFetcherProps> = ({
     const baseUrl = sessionStorage.getItem("url");
     const authType = sessionStorage.getItem("auth_type");
 
-    const payload = {
+    const payload: { [key: string]: string | null } = {
       code,
       codeVerifier,
       clientId,
@@ -174,6 +176,7 @@ const TokenFetcher: React.FC<TokenFetcherProps> = ({
     // Clear session data
     sessionStorage.clear();
   };
+
   const getRequestHeaders = () => {
     if (requiresSecret) {
       return (
@@ -185,11 +188,13 @@ const TokenFetcher: React.FC<TokenFetcherProps> = ({
         </p>
       );
     } else {
-      <p>
-        {`Headers: {
+      return (
+        <p>
+          {`Headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }`}
-      </p>;
+        </p>
+      );
     }
   };
 

@@ -115,7 +115,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ steps, setSteps }) => {
       : false;
 
   useEffect(() => {
-    // Set auth form default values
+    // Set auth form default values here
     configForm.setFieldsValue({
       // url: "https://dev-04156064.okta.com",
       // clientId: "0saegvwmhtKedyAr23d2",
@@ -129,7 +129,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ steps, setSteps }) => {
   const scopeValidationRule = {
     required: true,
     message: "Please select 'openid' scope",
-    validator: async (_, value) => {
+    validator: async (_: unknown, value: string[]) => {
       if (!value.includes("openid")) {
         return Promise.reject(
           new Error("Selecting 'openid' scope is required")
@@ -355,7 +355,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ steps, setSteps }) => {
       }`}
           </p>
           <Form.Item wrapperCol={{ offset: 0, span: 16 }}>
-            <Button type="primary" htmlType="Submit">
+            <Button type="primary" htmlType="submit">
               Get auth code
             </Button>
           </Form.Item>
