@@ -117,8 +117,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ steps, setSteps }) => {
   useEffect(() => {
     // Set auth form default values
     configForm.setFieldsValue({
-      url: "https://dev-09146087.okta.com",
-      clientId: "0oaethwmhtYeayAr25d7",
+      // url: "https://dev-04156064.okta.com",
+      // clientId: "0saegvwmhtKedyAr23d2",
       redirectUrl: "http://localhost:5173/",
       scope: ["openid", "profile"],
       responseType: "code",
