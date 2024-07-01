@@ -111,9 +111,9 @@ function App() {
   const renderPage = () => (
     <>
       <p>
-        This tool is designed to test and enhance your understanding of four
-        distinct authentication flows using OAuth 2.0 and OpenID Connect within
-        Okta. Authentication flows include:
+        This tool is designed to test and enhance understanding of four distinct
+        authentication flows using OAuth 2.0 and OpenID Connect within Okta.
+        Authentication flows include:
       </p>
       <Row>
         <Col xs={24} sm={12} md={12} lg={8} xl={12}>
